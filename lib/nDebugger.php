@@ -11,14 +11,14 @@ class nDebugger{
 
 	/**
 	 * show backtrace path
-	 * @param bool $hideTrace Hide nDebugger::trace element
+	 * @param bool $hideSelf Hide nDebugger::trace element
 	 * @return echo Backtrace
 	 */
-	public static function trace( $hideTrace = false ){
+	public static function trace( $hideSelf = false ){
 
 		$backtrace = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 20);
 
-		if( $hideTrace == true )
+		if( $hideSelf == true )
 			array_shift( $backtrace );
 
 		// output div
