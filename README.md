@@ -12,7 +12,7 @@
 
 ```
 function myFunction(){
-    nDebugger::trace( true );
+    nDebugger::trace();
 }
 ```
 
@@ -29,7 +29,7 @@ function testFunction( string 'my test string' )
 
 ```
 function testFunctionArray( $arr ){
-	nDebugger::trace( true );
+	nDebugger::trace();
 	return implode( ', ', $arr );
 }
 ```
@@ -56,7 +56,7 @@ function testFunction( $str ){
 
 function testFunctionArray( $arr ){
 
-	nDebugger::trace( true );
+	nDebugger::trace();
 	return implode( ', ', $arr );
 
 }
