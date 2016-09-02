@@ -4,28 +4,41 @@
 * Date: 2016-09-02
 * Version: 1.0.2
 
-**Requirements**
+#### Requirements
 
 * PHP > 5.4
 
-**Example 1: function with string**
+## 1. Install
+
+Just copy the source or clone this repository( `git clone git@github.com:turbopixel/nDebugger.git` ) and include the class like `require 'lib/nDebugger.php';`
+
+## 2. Usage
+
+### nDebugger::trace()
+
+#### `mixed nDebugger::trace( [ bool $hideSelf= false ] );`  
+  
+**Parameters**  
+
+- $hideSelf - Ignore the last backtrace ( nDebugger::trace() )
+
+#### Example 1
 
 ```
-function myFunction(){
+function myFunction($str){
     nDebugger::trace();
 }
 ```
 
-**Result 1**
+**Result**
 
 ```
 nDebugger::backtrace()
-
 #0 /var/www/demopage/public/nDebugger/test.php in line 13:
 function testFunction( string 'my test string' )
-```
+```  
 
-**Example 2: function with array**
+#### Example 2
 
 ```
 function testFunctionArray( $arr ){
@@ -34,7 +47,7 @@ function testFunctionArray( $arr ){
 }
 ```
 
-**Result 2**
+**Result**
 
 ```
 nDebugger::backtrace()
@@ -42,7 +55,7 @@ nDebugger::backtrace()
 #0 /var/www/demopage/public/nDebugger/test.php in line 13:
 function testFunctionArray( array ( 0 => 'test', 1 => 'debug', 2 => 'class', ) )
 ```
-**Example 3: nested functions**
+#### Example 3
 
 ```
 function testFunction( $str ){
@@ -62,7 +75,7 @@ function testFunctionArray( $arr ){
 }
 ```
 
-**Result 3**
+**Result**
 
 ```
 nDebugger::backtrace()
