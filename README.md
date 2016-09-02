@@ -1,5 +1,7 @@
 # nDebugger
 
+nDebugger is a simple php debugging class.
+
 * Author: Nico Hemkes ([https://hemk.es](hemk.es))
 * Date: 2016-09-02
 * Version: 1.0.2
@@ -28,6 +30,8 @@ Just copy the source or clone this repository( `git clone git@github.com:turbopi
 function myFunction($str){
     nDebugger::trace();
 }
+
+myFunction( 'this is a test string' );
 ```
 
 **Result**
@@ -35,7 +39,7 @@ function myFunction($str){
 ```
 nDebugger::backtrace()
 #0 /var/www/demopage/public/nDebugger/test.php in line 13:
-function testFunction( string 'my test string' )
+function myFunction( string 'this is a test string' )
 ```  
 
 #### Example 2
@@ -45,6 +49,8 @@ function testFunctionArray( $arr ){
 	nDebugger::trace();
 	return implode( ', ', $arr );
 }
+
+testFunctionArray( ['apple', 'banana', 'zitrone'] );
 ```
 
 **Result**
@@ -53,7 +59,7 @@ function testFunctionArray( $arr ){
 nDebugger::backtrace()
 
 #0 /var/www/demopage/public/nDebugger/test.php in line 13:
-function testFunctionArray( array ( 0 => 'test', 1 => 'debug', 2 => 'class', ) )
+function testFunctionArray( array ( 0 => 'apple', 1 => 'banana', 2 => 'zitrone', ) )
 ```
 #### Example 3
 
@@ -73,6 +79,8 @@ function testFunctionArray( $arr ){
 	return implode( ', ', $arr );
 
 }
+
+testFunction( [ 'foo', 'bar' ] );
 ```
 
 **Result**
@@ -81,8 +89,8 @@ function testFunctionArray( $arr ){
 nDebugger::backtrace()
 
 #0 /var/www/demopage/public/nDebugger/test.php in line 8:
-function testFunctionArray( array ( 0 => 'test', 1 => 'debug', 2 => 'class', ) )
+function testFunctionArray( array ( 0 => 'foo', 1 => 'bar', ) )
 
 #1 /var/www/demopage/public/nDebugger/test.php in line 21:
-function testFunction( array ( 0 => 'test', 1 => 'debug', 2 => 'class', ) )
+function testFunctionArray( array ( 0 => 'foo', 1 => 'bar', ) )
 ```
