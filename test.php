@@ -1,21 +1,8 @@
 <?php 
-
 require 'lib/nDebugger.php';
 
-function testFunction( $str ){
-
-	if( is_array($str) )
-		testFunctionArray($str);
-
-	return $str;
-
+function myFunction($str){
+    nDebugger::trace();
 }
 
-function testFunctionArray( $arr ){
-
-	nDebugger::trace( true );
-	return implode( ', ', $arr );
-
-}
-
-echo testFunction( [ 'test', 'debug', 'class' ] );
+myFunction( 'this is a test string' );
