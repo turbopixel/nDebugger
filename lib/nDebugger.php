@@ -14,7 +14,7 @@ class nDebugger{
 	 * @param bool $hideTrace Hide nDebugger::trace element
 	 * @return echo Backtrace
 	 */
-	public static function trace( $hideTrace = true ){
+	public static function trace( $hideTrace = false ){
 
 		$backtrace = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 20);
 
