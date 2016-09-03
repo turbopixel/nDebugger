@@ -18,7 +18,7 @@ Just copy the source or clone this repository( `git clone git@github.com:turbopi
 
 ### nDebugger::trace()
 
-#### `mixed nDebugger::trace( [ bool $hideSelf= false ] );`  
+#### `void  nDebugger::trace( [ bool $hideSelf= false ] );`  
   
 **Parameters**  
 
@@ -97,15 +97,13 @@ function testFunctionArray( array ( 0 => 'foo', 1 => 'bar', ) )
 
 ### nDebugger::pre()
 
-You use the php functions ´print_r()´ or ´var_dump(); exit; ´ for debugging? That sucks!
+You use the php functions `print_r()` or `var_dump(); exit; ` for debugging? That sucks!
 
-#### `mixed nDebugger::pre( mixed $expression [, mixed $...] );`  
-
-Parameters
+#### `void nDebugger::pre( mixed $expression [, mixed $...] );`  
 
 #### Example 1:
 
-nDebugger::pre( 'Hello World', true, array( 'apple', 'banana' ), ( 4.5*5 ), ( $a == true ) );
+`nDebugger::pre( 'Hello World', true, array( 'apple', 'banana' ), ( 4.5*5 ), ( $a == true ) );`
 
 **Result**
 
