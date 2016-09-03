@@ -73,24 +73,31 @@ class nDebugger{
 
 	}
 
+	/**
+	 * pre() for better debugging
+	 * @return mixed Html oputput
+	 */
 	public static function pre(){
     	$args = func_get_args();
 
+    	if( empty($args) )
+    		die( 'no arguments' );
+
+    	// output
     	$output = '';
 
     	$output .= self::getStyle();
 
-		// output div
 		$output .= '<div class="nDebugger" >';
-		$output.= '<div class="nTitle" >';
 
+		$output .= '<div class="nTitle" >';
     	$output .= 'nDebugger::pre() ';
     	$output .= '</div>';
 
 	    $output .= '<div class="nLineSub" >';
     	$output .= debug_backtrace()[0]['file'] . ':' . debug_backtrace()[0]['line'];
         $output .= "</div>";
-		
+
 		$output .= self::preCode($args);
 
         $output .= "</div>";
@@ -99,7 +106,15 @@ class nDebugger{
 
 	}
 
-	private function preCode($args, $recursive = false){
+	/**
+	 * children method of pre() for debugging the arguments
+	 * @param  mixed $args
+	 * @return mixed Debugging result in html
+	 */
+	private function preCode($args){
+
+		if( empty($args) )
+			return false;
 
 		foreach ($args as $arg){
 
@@ -113,7 +128,7 @@ class nDebugger{
 	        		if( is_array($value) ){
 						$var = self::preCode($value);
 					}else{
-						
+
 						ob_start();
 						var_dump($value);
 						$var = ob_get_clean();
@@ -129,7 +144,7 @@ class nDebugger{
 
 	        		if( $arg === true )
 	        			$var = 'true';
-	        		else 
+	        		else
 	        			$var = 'false';
 
 					$output .= '(' . gettype($arg) . ') ' . $var;
@@ -142,23 +157,16 @@ class nDebugger{
 
 					$output .= 'NULL';
 
-	        } elseif( is_string($arg) && is_array(json_decode($arg, true)) && (json_last_error() == JSON_ERROR_NONE) ) {
+	        } elseif( /* json */ is_string($arg) && is_array(json_decode($arg, true)) && (json_last_error() == JSON_ERROR_NONE) ) {
 
 					$output .= '(json) ' . self::preCode( json_decode($arg) );
 
 	        } else {
 
-        		if( is_object( $arg ) ){
-					
-        		}else{
-
-    				$output .= '(' . gettype($arg) . ') ' . htmlspecialchars($arg);
-        			
-        		}
+				$output .= '(' . gettype($arg) . ') ' . htmlspecialchars($arg);
 
 	        }
-	        
-	        
+
 	        $output .= "</div>";
 
 		}
@@ -168,9 +176,13 @@ class nDebugger{
 
 	}
 
-
+	/**
+	 * style of pre method
+	 * @return mixed CSS Style
+	 */
 	private function getStyle(){
 
+		// css style
 		$css =
 			'
 				.nDebugger{
@@ -189,23 +201,23 @@ class nDebugger{
 				}
 
 				.nDebugger .nLine{
-					display: block; 
+					display: block;
 					line-height: 18px;
 					padding: 8px;
 					border-bottom: 1px solid #eee;
 				}
 				.nDebugger .nLineSub{
-					display: block; 
+					display: block;
 					font-size: 11px;
 					line-height: 16px;
 					padding: 4px 8px;
 				}
-				';
+			';
 
 			// minify css
 			$css = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $css );
 	    	$css = str_replace( array("\r\n", "\r", "\n", "\t"), '', $css );
-	    	
+
 	    	$css = "<style>{$css}</style>";
 
 			return $css;
