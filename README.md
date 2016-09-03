@@ -5,6 +5,7 @@ nDebugger is a simple php debugging class.
 * Author: Nico Hemkes ([https://hemk.es](hemk.es))
 * Date: 2016-09-02
 * Version: 1.0.2
+* License: MIT (see LICENSE.md)
 
 #### Requirements
 
